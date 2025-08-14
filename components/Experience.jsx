@@ -111,7 +111,7 @@ export default function ExperienceShort() {
                 <FaBriefcase className="text-fuchsia-600 text-2xl" />
               </div>
               <div>
-                <h3 className="font-semibold text-gray-800 text-2xl">{exp.role}</h3>
+                <h3 className="font-semibold text-gray-800 text-xl">{exp.role}</h3>
                 <p className="text-xl text-gray-500">{exp.company} • {exp.date}</p>
               </div>
             </motion.div>

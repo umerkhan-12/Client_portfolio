@@ -30,7 +30,7 @@ export default function Hero(){
           initial={{opacity:0, y:10}}
           animate={{opacity:1, y:0}}
           transition={{duration:0.6}}
-          className="mt-4 text-lg md:text-5xl text-gray-600"
+          className="mt-4 text-2xl md:text-5xl text-gray-600"
         >
           {words[index]}
         </motion.p>
