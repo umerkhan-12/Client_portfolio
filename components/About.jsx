@@ -15,7 +15,7 @@ export default function About() {
         transition={{ duration: 0.6 }}
       >
         <h2 className="text-5xl font-semibold">About</h2>
-        <p className="mt-3 text-gray-700 max-w-3xl text-2xl">
+        <p className="mt-3 text-gray-700 max-w-3xl text-xl">
           Detail-oriented Data Analyst and Business Analyst with over 8 years of experience
           in translating complex data into actionable insights. Skilled in SQL, Excel,
           Tableau, Power BI, and SAP with strong expertise in data modeling, KPI development,
