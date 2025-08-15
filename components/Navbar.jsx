@@ -13,7 +13,7 @@ export default function Navbar() {
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
-    { name: 'Projects', href: '#projects' },
+    { name: 'Projects', href: '/projects' },
     { name: 'Experience', href: '/experience' },
     { name: 'Contact', href: '/contact' }
   ]
@@ -27,11 +27,11 @@ export default function Navbar() {
           <motion.div
             animate={{ y: [0, -3, 0] }}
             transition={{ repeat: Infinity, duration: 1.5 }}
-            className="text-fuchsia-500 text-2xl"
+            className="text-violet-500 text-2xl"
           >
             <HiOutlineMail />
           </motion.div>
-          <span className="font-medium text-gray-800 group-hover:text-fuchsia-500 transition-colors">
+          <span className="font-medium text-gray-800 group-hover:text-violet-500 transition-colors">
             ahmed.uneeb@yahoo.com 
           </span>
         </Link>
@@ -44,8 +44,8 @@ export default function Navbar() {
               whileHover={{ scale: 1.1 }}
               className={`transition-colors ${
                 pathname === link.href
-                  ? 'text-fuchsia-500 font-semibold'
-                  : 'text-gray-700 hover:text-fuchsia-500'
+                  ? 'text-violet-500 font-semibold'
+                  : 'text-gray-700 hover:text-violet-500'
               }`}
             >
               <Link href={link.href}>{link.name}</Link>
@@ -80,8 +80,8 @@ export default function Navbar() {
                   transition={{ delay: idx * 0.1 }}
                   className={`transition-colors ${
                     pathname === link.href
-                      ? 'text-fuchsia-500 font-semibold'
-                      : 'text-gray-700 hover:text-fuchsia-500'
+                      ? 'text-violet-500 font-semibold'
+                      : 'text-gray-700 hover:text-violet-500'
                   }`}
                   onClick={() => setIsOpen(false)}
                 >

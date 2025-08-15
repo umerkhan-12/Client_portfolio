@@ -10,7 +10,7 @@ export default function Footer() {
 "
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-500 hover:text-fuchsia-500 transition-colors text-xl"
+          className="text-gray-500 hover:text-violet-600 transition-colors text-xl"
         >
           <FaLinkedin />
         </a>
@@ -18,7 +18,7 @@ export default function Footer() {
         {/* Yahoo Mail */}
         <a
           href="mailto:ahmed.uneeb@yahoo.com"
-          className="text-gray-500 hover:text-fuchsia-500 transition-colors text-xl"
+          className="text-gray-500 hover:text-violet-600 transition-colors text-xl"
         >
           <FaYahoo />
         </a>
@@ -26,7 +26,7 @@ export default function Footer() {
         {/* Phone */}
         <a
           href="tel:+14708413016"
-          className="text-gray-500 hover:text-fuchsia-500 transition-colors text-xl"
+          className="text-gray-500 hover:text-violet-600 transition-colors text-xl"
         >
           <FaPhoneAlt />
         </a>

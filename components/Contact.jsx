@@ -82,7 +82,7 @@ export default function ContactCTA() {
       >
         <Link
           href="/contact"
-          className="inline-flex items-center gap-2 px-6 py-3 bg-fuchsia-600 hover:bg-fuchsia-700 text-white text-lg font-medium rounded-full shadow-lg transition"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-violet-600 hover:bg-violet-700 text-white text-lg font-medium rounded-full shadow-lg transition"
         >
           Get in Touch
           <HiArrowRight className="text-xl" />

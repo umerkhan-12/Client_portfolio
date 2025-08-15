@@ -12,3 +12,18 @@
 
 /* small utilities */
 /* .blur-100 { filter: blur(100px); } */
+:root {
+  --font-montserrat: 'Montserrat', sans-serif;
+  --font-lato: 'Lato', sans-serif;
+}
+
+/* Headings use Montserrat */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-montserrat);
+  font-weight: 700;
+}
+
+/* Body text uses Lato */
+body, p, span, li, a, button, input, textarea {
+  font-family: var(--font-lato);
+}
