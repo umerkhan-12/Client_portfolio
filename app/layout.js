@@ -27,9 +27,10 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
 export const metadata = {
-  title: 'Uneeb Ahmed Portfolio',
-  description: 'Portfolio website for Data Analyst & Business Analyst',
-}
+  title: 'Uneeb Ahmed | Data Analyst & Storyteller',
+  description: 'Delivering data-driven insights through dashboards, forecasting, and analytics.',
+  keywords: ['Uneeb Ahmed', 'Data Analyst', 'Business Intelligence', 'Power BI', 'Portfolio'],
+};
 
 // Import Google Fonts
 const montserrat = Montserrat({
