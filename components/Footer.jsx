@@ -2,7 +2,7 @@ import { FaLinkedin, FaYahoo, FaPhoneAlt } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="mt-12 py-6 text-center text-sm text-gray-500">
+    <footer className=" py-6 text-center  text-sm text-white bg-gradient-to-b from-black via-gray-900 to-gray-800">
       <div className="flex justify-center gap-6 mb-3">
         {/* LinkedIn */}
         <a
@@ -10,7 +10,7 @@ export default function Footer() {
 "
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-500 hover:text-violet-600 transition-colors text-xl"
+          className="text-gray-500 hover:text-cyan-600 transition-colors text-xl"
         >
           <FaLinkedin />
         </a>
@@ -18,7 +18,7 @@ export default function Footer() {
         {/* Yahoo Mail */}
         <a
           href="mailto:ahmed.uneeb@yahoo.com"
-          className="text-gray-500 hover:text-violet-600 transition-colors text-xl"
+          className="text-gray-500 hover:text-cyan-600 transition-colors text-xl"
         >
           <FaYahoo />
         </a>
@@ -26,7 +26,7 @@ export default function Footer() {
         {/* Phone */}
         <a
           href="tel:+14708413016"
-          className="text-gray-500 hover:text-violet-600 transition-colors text-xl"
+          className="text-gray-500 hover:text-cyan-600 transition-colors text-xl"
         >
           <FaPhoneAlt />
         </a>
@@ -36,3 +36,5 @@ export default function Footer() {
     </footer>
   );
 }
+
+
