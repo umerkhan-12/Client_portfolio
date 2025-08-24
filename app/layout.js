@@ -7,6 +7,8 @@ export const metadata = {
   title: 'Uneeb Ahmed | Data Analyst ',
   description: 'Delivering data-driven insights through dashboards, forecasting, and analytics.',
   keywords: ['Uneeb Ahmed', 'Data Analyst', 'Business Intelligence', 'Power BI', 'Portfolio'],
+  authors: ['Uneeb Ahmed'],
+  favicon: '/favicon.ico',
 };
 
 // Import Google Fonts
