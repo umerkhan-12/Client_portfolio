@@ -13,7 +13,7 @@ export async function POST(req) {
 
     const data = await resend.emails.send({
       from: 'Portfolio Contact <onboarding@resend.dev>', // Must be a verified sender in Resend
-      to: "k230798@nu.edu.pk",
+      to: "ahmed.uneeb@yahoo.com",
       subject: `New Contact Form Message from ${name}`,
       html: `
         <h2>New Contact Form Submission</h2>
