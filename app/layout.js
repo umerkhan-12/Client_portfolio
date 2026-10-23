@@ -1,44 +1,81 @@
-import './globals.css'
-import { Montserrat, Lato } from 'next/font/google'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
+import './globals.css';
+import localFont from 'next/font/local';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import { profile } from '@/data/profile';
+
+const openSans = localFont({
+  src: [
+    { path: './fonts/OpenSans-Variable.woff2', weight: '300 800', style: 'normal' },
+    { path: './fonts/OpenSans-Variable-Italic.woff2', weight: '300 800', style: 'italic' },
+  ],
+  variable: '--font-open-sans',
+  display: 'swap',
+});
+
+const comfortaa = localFont({
+  src: [{ path: './fonts/Comfortaa-Variable.woff2', weight: '300 700', style: 'normal' }],
+  variable: '--font-comfortaa',
+  display: 'swap',
+});
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+const description = `${profile.name} is a ${profile.title.toLowerCase()} with ${profile.yearsExperience} years in demand planning, logistics analytics and inventory optimization across CPG, infrastructure and global distribution.`;
 
 export const metadata = {
-  title: 'Uneeb Ahmed | Data Analyst ',
-  description: 'Delivering data-driven insights through dashboards, forecasting, and analytics.',
-  keywords: ['Uneeb Ahmed', 'Data Analyst', 'Business Intelligence', 'Power BI', 'Portfolio'],
-  authors: ['Uneeb Ahmed'],
-  favicon: '/favicon.ico',
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: `${profile.name} — ${profile.title}`,
+    template: `%s · ${profile.name}`,
+  },
+  description,
+  keywords: [
+    profile.name,
+    'Supply Chain Analyst',
+    'Demand Planning',
+    'S&OP',
+    'Logistics Analytics',
+    'Inventory Optimization',
+    'SAP IBP',
+    'Power BI',
+  ],
+  authors: [{ name: profile.name, url: profile.linkedin }],
+  creator: profile.name,
+  openGraph: {
+    type: 'profile',
+    siteName: profile.name,
+    title: `${profile.name} — ${profile.title}`,
+    description,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${profile.name} — ${profile.title}`,
+    description,
+  },
 };
 
-// Import Google Fonts
-const montserrat = Montserrat({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
-  variable: '--font-montserrat',
-  display: 'swap',
-})
-
-const lato = Lato({
-  subsets: ['latin'],
-  weight: ['300', '400', '700'],
-  variable: '--font-lato',
-  display: 'swap',
-})
+export const viewport = {
+  themeColor: '#ffffff',
+};
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${lato.variable}`}>
-      <body className="relative min-h-screen font-sans ">
-        {/* Background */}
-        <div className="absolute top-0 -z-10 h-full w-full bg-white">
-          <div className="absolute bottom-auto left-auto right-0 top-0 h-[500px] w-[500px] -translate-x-[30%] translate-y-[20%] rounded-full bg-[rgba(173,109,244,0.5)] opacity-50 blur-[80px]"></div>
-        </div>
-
-        <Navbar /> {/* Shows on every page */}
-        <main>{children}</main>
-        <Footer /> {/* Shows on every page */}
+    <html lang="en" className={`${openSans.variable} ${comfortaa.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Enables scroll-reveal styles only when JavaScript runs */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
+      <body>
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded focus:bg-brand focus:px-4 focus:py-2 focus:text-white"
+        >
+          Skip to main content
+        </a>
+        <Navbar />
+        <main id="main">{children}</main>
+        <Footer />
       </body>
     </html>
-  )
+  );
 }

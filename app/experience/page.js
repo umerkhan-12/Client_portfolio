@@ -1,188 +1,37 @@
+import PageBanner from '@/components/PageBanner';
+import Experience from '@/components/Experience';
+import Contact from '@/components/Contact';
+import Reveal from '@/components/Reveal';
+import { profile } from '@/data/profile';
+import { Download } from '@/components/Icons';
 
-"use client";
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  FaArrowLeft,
-  FaArrowRight,
-  FaDatabase,
-  FaChartLine,
-  FaCogs,
-  FaBuilding,
-} from "react-icons/fa";
+const page = profile.pages.experience;
 
-const experiences = [
-  {
-    role: "Asset & Logistics Analytics Manager",
-    company: "Digital Ocean",
-    date: "May 2023 – Sep 2024",
-    details: [
-      "Reduced aged inventory by 35% across EU warehouses through analytics in SAP, Power BI & Excel.",
-      "Developed automated forecasting models to align demand planning and capacity utilization.",
-      "Designed interactive Tableau dashboards for real-time capacity and procurement strategy.",
-      "Improved vendor scorecards & SLA tracking, enhancing procurement decision-making.",
-    ],
-    tech: ["SAP", "Power BI", "Excel", "Tableau", "SQL"],
-    icon: <FaDatabase />,
-    color: "from-indigo-500 to-purple-600",
-  },
-  {
-    role: "Senior Analyst – Supply Chain & Data Analytics",
-    company: "Berlin Brands Group / Novatex / Leverify",
-    date: "Dec 2021 – Apr 2023",
-    details: [
-      "Consolidated multi-country operations data using SQL, Power BI & Tableau for unified KPIs.",
-      "Enhanced demand forecasting accuracy, reducing stockouts and improving allocation.",
-      "Integrated SAP MM/SD data into automated Excel tools, cutting manual reporting by 60%.",
-      "Built vendor performance dashboards to track reliability, order fulfillment & OTD rates.",
-    ],
-    tech: ["SQL", "Power BI", "Tableau", "SAP", "Excel"],
-    icon: <FaChartLine />,
-    color: "from-cyan-500 to-blue-600",
-  },
-  {
-    role: "Assistant Logistics & Fincon (Financial Controls)",
-    company: "OOCL",
-    date: "Mar 2018 – Nov 2021",
-    details: [
-      "Created cost models & dashboards to optimize freight efficiency and route performance.",
-      "Built Power BI dashboards for carrier performance & HS code compliance monitoring.",
-      "Automated customs audit tools, reducing audit cycles & improving clearance accuracy.",
-      "Collaborated with finance to align budgets, reconcile costs & improve reporting speed.",
-    ],
-    tech: ["Power BI", "SAP", "Excel", "Logistics Data"],
-    icon: <FaCogs />,
-    color: "from-emerald-500 to-teal-600",
-  },
-  {
-    role: "Management Trainee – Finance & Fund Accounting",
-    company: "MCB Arif Habib",
-    date: "Nov 2015 – Feb 2018",
-    details: [
-      "Performed NAV calculations, reconciliations & variance analysis using Excel models.",
-      "Built automated financial templates to streamline reporting & compliance.",
-      "Assisted in portfolio performance tracking & benchmark comparison reporting.",
-      "Supported internal audits with data validation & ad-hoc reporting.",
-    ],
-    tech: ["Excel", "Fund Accounting", "Financial Analysis"],
-    icon: <FaBuilding />,
-    color: "from-sky-500 to-indigo-600",
-  },
-];
+export const metadata = {
+  title: page.title,
+  description: page.intro,
+};
 
 export default function ExperiencePage() {
-  const [index, setIndex] = useState(0);
-
-  const nextSlide = () => setIndex((i) => (i + 1) % experiences.length);
-  const prevSlide = () =>
-    setIndex((i) => (i - 1 + experiences.length) % experiences.length);
-
-  useEffect(() => {
-    const timer = setInterval(nextSlide, 7000);
-    return () => clearInterval(timer);
-  }, []);
-
   return (
-    <section className="relative w-full min-h-screen overflow-hidden 
-      bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 text-white">
-      
-      {/* Heading */}
-      <h1 className="text-center mt-24 text-4xl sm:text-5xl font-bold text-white">
-        My Professional Journey
-      </h1>
-
-      {/* Slider Container */}
-      <div className="relative w-full h-[75vh] mx-auto max-w-6xl mt-12">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
-            transition={{ duration: 0.8 }}
-            className={`absolute inset-0 flex flex-col md:flex-row rounded-2xl shadow-2xl overflow-hidden 
-              bg-gradient-to-r ${experiences[index].color} text-white`}
-          >
-            {/* Left panel: icon */}
-            <div className="md:w-1/3 flex items-center justify-center">
-              <div className="text-5xl sm:text-6xl p-6 bg-white/20 rounded-full shadow-lg">
-                {experiences[index].icon}
-              </div>
-            </div>
-
-            {/* Right panel: details */}
-            <div className="flex-1 p-6 sm:p-10 flex flex-col justify-center pb-20 md:pb-10">
-              <h3 className="text-2xl sm:text-3xl font-semibold">
-                {experiences[index].role}
-              </h3>
-              <p className="opacity-80 mb-4 text-sm sm:text-base">
-                {experiences[index].company} • {experiences[index].date}
-              </p>
-
-              <ul className="list-disc list-inside space-y-2 mb-4 text-sm sm:text-base opacity-90">
-                {experiences[index].details.map((d, i) => (
-                  <li key={i}>{d}</li>
-                ))}
-              </ul>
-
-              {/* Tech tags */}
-              <div className="flex flex-wrap gap-2 mb-6">
-                {experiences[index].tech.map((t, i) => (
-                  <span
-                    key={i}
-                    className="px-3 py-1 text-xs sm:text-sm bg-white/20 text-white rounded-full"
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-
-              {/* Download Resume Button */}
-              <motion.a
-                href="/resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-block px-6 py-3 rounded-full text-gray-900 font-semibold shadow-lg bg-white hover:bg-gray-200 transition"
-              >
-                📄 Download Resume
-              </motion.a>
-            </div>
-          </motion.div>
-        </AnimatePresence>
-
-        {/* Arrows */}
-        <button
-          onClick={prevSlide}
-          className="hidden md:flex absolute left-3 top-1/2 -translate-y-1/2 text-3xl p-2 rounded-full 
-          bg-white/20 hover:bg-white/40 text-white shadow-lg transition"
-        >
-          <FaArrowLeft />
-        </button>
-        <button
-          onClick={nextSlide}
-          className="hidden md:flex absolute right-3 top-1/2 -translate-y-1/2 text-3xl p-2 rounded-full 
-          bg-white/20 hover:bg-white/40 text-white shadow-lg transition"
-        >
-          <FaArrowRight />
-        </button>
-
-        {/* Dots Navigation */}
-        <div className="absolute bottom-3 md:bottom-4 flex gap-3 left-1/2 -translate-x-1/2">
-          {experiences.map((exp, i) => (
-            <button
-              key={i}
-              onClick={() => setIndex(i)}
-              className={`w-3 h-3 rounded-full transition ${
-                i === index ? "bg-cyan-400" : "bg-white/40"
-              }`}
-            />
-          ))}
+    <>
+      <PageBanner title={page.title} position="20% 60%" />
+      <div className="container-site py-14 sm:py-16">
+        <Reveal>
+          <p className="prose-justify">{page.intro}</p>
+        </Reveal>
+        <h2 className="title mt-12">Professional Experience</h2>
+        <div className="mt-4">
+          <Experience />
         </div>
+        <Reveal className="mt-6 border-t border-line pt-8">
+          <a href={profile.resume} download={profile.resumeFileName} className="btn bg-brand text-white hover:bg-brand-dark">
+            <Download className="h-4 w-4" />
+            Download full CV (PDF)
+          </a>
+        </Reveal>
       </div>
-    </section>
+      <Contact />
+    </>
   );
 }
-
-

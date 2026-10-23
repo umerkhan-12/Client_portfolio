@@ -1,29 +1,111 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-/* background grid + glow as provided */
-/* .bg-grid {
-  background-color: white;
-  background-image: linear-gradient(to right, rgba(128,128,128,0.04) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(128,128,128,0.04) 1px, transparent 1px);
-  background-size: 14px 24px;
-} */
+/* ---------- Design tokens (modelled on a clean Google Sites "Vision"-style theme) ---------- */
+@theme inline {
+  --color-brand: #285792;
+  --color-brand-dark: #1d4170;
+  --color-brand-tint: #e9eef5;
+  --color-ink: #212121;
+  --color-body: #3c4043;
+  --color-muted: #5f6368;
+  --color-nav: #6a6a6a;
+  --color-line: #e0e0e0;
+  --color-paper: #ffffff;
 
-/* small utilities */
-/* .blur-100 { filter: blur(100px); } */
-:root {
-  --font-montserrat: 'Montserrat', sans-serif;
-  --font-lato: 'Lato', sans-serif;
+  --font-sans: var(--font-open-sans), "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-comfortaa), "Trebuchet MS", system-ui, sans-serif;
 }
 
-/* Headings use Montserrat */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-montserrat);
-  font-weight: 700;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+  }
+  ::selection {
+    background: var(--color-brand);
+    color: #fff;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
 
-/* Body text uses Lato */
-body, p, span, li, a, button, input, textarea {
-  font-family: var(--font-lato);
+@utility container-site {
+  @apply mx-auto w-full max-w-[60rem] px-6 sm:px-10;
+}
+
+@layer components {
+  /* Section titles: rounded display face in the theme blue */
+  .title {
+    @apply font-display text-[1.9rem] font-normal leading-tight tracking-[-0.01em] text-brand sm:text-[2.15rem];
+  }
+  /* Long-form paragraphs are justified, like the reference */
+  .prose-justify {
+    @apply text-[1.0625rem] leading-[1.75] text-ink;
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    @media (width >= 40rem) {
+      hyphens: manual;
+      -webkit-hyphens: manual;
+    }
+  }
+  .square-list {
+    list-style: square;
+    @apply space-y-1.5 pl-5 text-[1.0625rem] leading-[1.6] text-ink marker:text-ink;
+  }
+  .link {
+    @apply underline decoration-1 underline-offset-[3px] hover:text-brand;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded px-5 py-2.5 text-[15px] font-semibold transition-colors duration-200;
+  }
+}
+
+/* Scroll reveal — content stays visible when JS is off */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hero entrance + scroll cue */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+.rise {
+  animation: rise 0.9s ease both;
+  animation-delay: var(--rise-delay, 0ms);
+}
+@keyframes nudge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+.nudge { animation: nudge 2s ease-in-out infinite; }
+
+/* Hamburger drawer */
+.drawer-enter { animation: drawer 0.25s ease both; }
+@keyframes drawer {
+  from { transform: translateX(-100%); }
+  to { transform: none; }
 }

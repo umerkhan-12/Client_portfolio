@@ -1,76 +1,41 @@
+import Image from 'next/image';
+import { profile } from '@/data/profile';
+import { ChevronDown } from './Icons';
 
-
-'use client'
-import { motion } from 'framer-motion'
-import { useState, useEffect } from 'react'
-import { FaDownload } from 'react-icons/fa'
-
+// Full-bleed photo hero with a centered headline and accent bar.
 export default function Hero() {
-  const words = ["Data Analyst", "Business Analyst", "Supply Chain Expert","Analyst Expert"]
-  const [index, setIndex] = useState(0)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % words.length)
-    }, 2500)
-    return () => clearInterval(interval)
-  }, [])
-
   return (
-    <section className="relative pt-28 overflow-hidden 
-      bg-gradient-to-b from-black via-gray-900 to-gray-800 text-white">
-      
-      <div className="max-w-6xl mx-auto px-6 py-20 mb-14 text-center md:text-left">
-        
-        {/* Name */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl 
-                     font-extrabold tracking-tight leading-tight text-gray-100"
-          style={{ fontFamily: 'var(--font-montserrat)' }}
+    <section aria-labelledby="hero-title" className="relative isolate flex min-h-[calc(100svh-4rem)] items-center justify-center overflow-clip">
+      <Image
+        src={profile.heroImage}
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="-z-20 object-cover object-[35%_50%]"
+      />
+      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[rgba(20,24,32,0.55)]" />
+
+      <div className="mx-auto max-w-4xl px-6 py-24 text-center">
+        <h1
+          id="hero-title"
+          className="rise font-display text-[2.6rem] font-light leading-[1.22] tracking-[-0.01em] text-white sm:text-6xl sm:leading-[1.2]"
         >
-          Uneeb Ahmed
-        </motion.h1>
-
-        {/* Underline accent */}
-        <motion.div
-          initial={{ width: 0 }}
-          animate={{ width: "300px" }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="h-1 bg-cyan-500 mt-3 mb-5 rounded-full mx-auto md:mx-0"
-        ></motion.div>
-
-        {/* Rotating job titles */}
-        <motion.p
-          key={index}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mt-4 text-2xl sm:text-3xl md:text-4xl text-gray-300 font-medium"
-          style={{ fontFamily: 'var(--font-lato)' }}
-        >
-          {words[index]}
-        </motion.p>
-
-        {/* Download Resume button */}
-        <motion.a
-          href="/resume.pdf"
-          download
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="inline-flex items-center gap-2 mt-6 px-6 py-3 
-                     bg-cyan-500 text-white font-medium rounded-full shadow 
-                     hover:bg-cyan-600 transition"
-          style={{ fontFamily: 'var(--font-lato)' }}
-        >
-          <FaDownload className="text-lg" />
-          Download Resume
-        </motion.a>
-
+          {profile.headline}
+        </h1>
+        <div aria-hidden="true" className="rise mx-auto mt-7 h-2.5 w-32 bg-brand" style={{ '--rise-delay': '150ms' }} />
+        <p className="rise mt-7 text-lg tracking-wide text-white/85" style={{ '--rise-delay': '250ms' }}>
+          {profile.name} · {profile.title}
+        </p>
       </div>
+
+      <a
+        href="#intro"
+        className="nudge absolute bottom-6 left-1/2 -ml-6 grid h-12 w-12 place-items-center rounded-full text-white/80 hover:text-white"
+        aria-label="Scroll to content"
+      >
+        <ChevronDown className="h-8 w-8" strokeWidth={2} />
+      </a>
     </section>
-  )
+  );
 }

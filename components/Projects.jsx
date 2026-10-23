@@ -1,53 +1,36 @@
-'use client'
-import { motion } from 'framer-motion'
-import ProjectCard from './ProjectCard'
-
-const projects = [
-  {
-    title: "Supply Chain KPI Dashboard",
-    description: "Power BI dashboard tracking supply chain performance metrics.",
-    tech: ["Power BI", "SQL", "Excel"],
-    link: "#"
-  },
-  {
-    title: "Procurement Spend Analysis",
-    description: "Tableau analysis of procurement costs and vendor performance.",
-    tech: ["Tableau", "Excel"],
-    link: "#"
-  },
-  {
-    title: "Python Logistics Data Cleaner",
-    description: "Python script for cleaning and preparing logistics datasets.",
-    tech: ["Python", "Pandas"],
-    link: "#"
-  },
-  {
-    title: "Forecast Model",
-    description: "Excel + Power BI forecasting for demand planning.",
-    tech: ["Excel", "Power BI"],
-    link: "#"
-  }
-]
+import { focusAreas, projects } from '@/data/profile';
+import ProjectCard from './ProjectCard';
+import Reveal from './Reveal';
+import SectionHeading from './SectionHeading';
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-20">
-      <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-3xl font-bold mb-10">Projects</h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project, idx) => (
-            <motion.div
-              key={idx}
-              initial={{opacity:0, y:50}}
-              whileInView={{opacity:1, y:0}}
-              viewport={{once:true}}
-              transition={{duration:0.5, delay: idx * 0.2}}
-            >
-              <ProjectCard {...project} />
-            </motion.div>
-          ))}
-        </div>
+    <>
+      <div className="container-site space-y-14 pb-14">
+        {projects.map((project, i) => (
+          <Reveal key={project.title}>
+            <ProjectCard project={project} id={`project-${i}`} />
+          </Reveal>
+        ))}
       </div>
-    </section>
-  )
+
+      {/* Stacked focus areas, alternating with a light band like the reference */}
+      <section aria-labelledby="focus-title" className="bg-brand-tint py-14 sm:py-16">
+        <div className="container-site">
+          <Reveal>
+            <SectionHeading id="focus-title">Areas of Focus</SectionHeading>
+          </Reveal>
+          <div className="mt-8 grid gap-10 md:grid-cols-3 md:gap-8">
+            {focusAreas.map((area, i) => (
+              <Reveal key={area.title} delay={i * 80}>
+                <h3 className="font-display text-xl text-brand">{area.title}</h3>
+                <div aria-hidden="true" className="mt-3 h-1 w-12 bg-brand" />
+                <p className="mt-4 text-[1rem] leading-[1.7] text-ink">{area.text}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
+  );
 }

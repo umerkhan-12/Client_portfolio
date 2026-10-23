@@ -1,40 +1,12 @@
-import { FaLinkedin, FaYahoo, FaPhoneAlt } from "react-icons/fa";
+import { profile } from '@/data/profile';
 
 export default function Footer() {
+  const year = new Date().getFullYear();
   return (
-    <footer className=" py-6 text-center  text-sm text-white bg-gradient-to-b from-black via-gray-900 to-gray-800">
-      <div className="flex justify-center gap-6 mb-3">
-        {/* LinkedIn */}
-        <a
-          href="https://www.linkedin.com/in/uneeb-ahmed
-"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-gray-500 hover:text-cyan-600 transition-colors text-xl"
-        >
-          <FaLinkedin />
-        </a>
-
-        {/* Yahoo Mail */}
-        <a
-          href="mailto:ahmed.uneeb@yahoo.com"
-          className="text-gray-500 hover:text-cyan-600 transition-colors text-xl"
-        >
-          <FaYahoo />
-        </a>
-
-        {/* Phone */}
-        <a
-          href="tel:+14708413016"
-          className="text-gray-500 hover:text-cyan-600 transition-colors text-xl"
-        >
-          <FaPhoneAlt />
-        </a>
+    <footer className="bg-white">
+      <div className="container-site py-8 text-sm text-muted">
+        © {year} {profile.name}. All rights reserved.
       </div>
-
-      <p>© 2025 Uneeb Ahmed — Portfolio</p>
     </footer>
   );
 }
-
-
